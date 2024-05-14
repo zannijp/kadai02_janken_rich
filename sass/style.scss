@@ -1,0 +1,16 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.d_block {display: block;}
+.d_none {display: none;}
+
+#coinGame {
+    background-color: darkgrey;
+    max-width: 800px;
+    height: 600px;
+    #name, #attack, #game {
+        background-color: aquamarine;
+    }
+}

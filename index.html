@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="stylesheet" href="css/style.min.css">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div id="coinGame">
+        <div id="name">
+            <input type="text" value="ジョナサン" id="p_name" placeholder="ジョナサン">
+            <button value="next" onclick="playButton();">NEXT</button>
+        </div>
+        <div id="attack" class="d_none">
+            <label><input type="radio" name="attacks" value="first" checked>先攻</label>
+            <label><input type="radio" name="attacks" value="second">後攻</label>
+            <button value="START" onclick="attackButton();">START</button>
+        </div>
+        <div id="gameFirst" class="d_none">
+            <button id="playerCoin">プレイヤー</button>
+            <button id="hostCoin">ホスト</button>
+        </div>
+        <div id="gameSecond" class="d_none">
+            <button id="hostCoin">ホスト</button>
+            <button id="playerCoin">プレイヤー</button>
+        </div>
+        <div id="ui" class="d_none">
+            <button id="change">チェンジ</button>
+            <p>プレイヤーの名前：<span id="nameDisplay"></span></p>
+            <p>先攻後攻：<span id="attackDisplay"></span></p>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
