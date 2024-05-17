@@ -1,16 +1,606 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+    font-family: "Yuji Syuku", serif;
+}
+
+body {
+    background-color: #000;
 }
 
 .d_block {display: block;}
 .d_none {display: none;}
 
 #coinGame {
-    background-color: darkgrey;
-    max-width: 800px;
-    height: 600px;
-    #name, #attack, #game {
-        background-color: aquamarine;
+    position: relative;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100vh;
+    #start, #name, #attack, #game, #fukidashi {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+    }
+    #start {
+        margin: 0 auto;
+        width: 100%;
+        #startContents {
+            margin: 0 auto;
+            text-align: center;
+            width: 50%;
+            p {
+                font-size: 2em;
+                color: #ff0084;
+            }
+        }
+        .startHide {
+            animation-name: startHide;
+            animation-duration: .5s;
+            // animation-delay: .5S;
+            animation-timing-function: linear;
+            animation-fill-mode: forwards;
+        }
+        @keyframes startHide {
+            0% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                display: none;
+            }
+        }
+    }
+    #name {
+        #hostTalk01 {
+            display: block;
+            position: relative;
+            top: 0;
+            left:0 ;
+            width: 100%;
+            margin: 0 auto;
+            .hostNameTalk_01 {
+                animation-name: hostNameTalk_01;
+                animation-duration: .1s;
+                animation-delay: 2.75s;
+                animation-timing-function: linear;
+                animation-fill-mode: forwards;
+                opacity: 0;
+            }
+            @keyframes hostNameTalk_01 {
+                0% {
+                    opacity: 0;
+                }
+                100% {
+                    opacity: 1;
+                }
+            }
+        }
+        #nameInput {
+            position: absolute;
+            bottom: 10%;
+            width: 100%;
+            text-align: center;
+            margin: 0 auto;
+        }
+        .playerNameAnser_01 {
+            animation-name: playerNameAnser_01;
+            animation-duration: .25s;
+            animation-delay: 3.5s;
+            animation-timing-function: linear;
+            animation-fill-mode: forwards;
+            opacity: 0;
+        }
+        @keyframes playerNameAnser_01 {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+    }
+    #attack {
+        #hostTalk02 {
+            display: block;
+            position: relative;
+            top: 0;
+            left:0 ;
+            width: 100%;
+            margin: 0 auto;
+            .hostAttackTalk02 {
+                animation-name: hostAttackTalk02;
+                animation-duration: .1s;
+                animation-delay: 2.75s;
+                animation-timing-function: linear;
+                animation-fill-mode: forwards;
+                opacity: 0;
+            }
+            @keyframes hostattackTalk_01 {
+                0% {
+                    opacity: 0;
+                }
+                100% {
+                    opacity: 1;
+                }
+            }
+        }
+        #attackInput {
+            position: absolute;
+            bottom: 10%;
+            width: 100%;
+            text-align: center;
+            margin: 0 auto;
+            .attackChoice {
+                display: flex;
+                margin-bottom: 26px;
+                width: 100%;
+                justify-content: center;
+                align-items: center;
+                overflow: hidden;
+                input {
+                position: absolute !important;
+                clip: rect(0, 0, 0, 0);
+                height: 1px;
+                width: 1px;
+                border: 0;
+                overflow: hidden;
+                }
+                label {
+                background-color: #f0f0f0;
+                color: #999;
+                text-align: center;
+                font-size: 2em;
+                line-height: 1;
+                padding: 9px 18px;
+                margin-right: -1px;
+                border: 1px solid rgba(0, 0, 0, 0.4);
+                transition: all 0.2s ease-in;
+                }
+                &:hover {
+                cursor: pointer;
+                }
+                input:checked + label {
+                background-color: #ffc400;
+                color:#ff0084;
+                }
+                label:first-of-type {
+                border-radius: 0;
+                }
+                label:last-of-type {
+                border-radius: 0;
+                }
+            }
+        }
+        .playerAttackAnser_02 {
+            animation-name: playerAttackAnser_02;
+            animation-duration: .25s;
+            animation-delay: 3.5s;
+            animation-timing-function: linear;
+            animation-fill-mode: forwards;
+            opacity: 0;
+        }
+        @keyframes playerAttackAnser_02 {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+    }
+    #fukidashi {
+        z-index: -999;
+        .fukidashiHide_H {
+            animation-name: fukidashiHide_H;
+            animation-duration: .1s;
+            animation-delay: 2.5S;
+            animation-timing-function: linear;
+            animation-fill-mode: forwards;
+            opacity: 0;
+        }
+        @keyframes fukidashiHide_H {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+    }
+    #game {
+        position: relative;
+        .gameInput {
+            position: absolute;
+            bottom: 5%;
+            width: 100%;
+            text-align: center;
+            margin: 0 auto;
+            #playerCoinF {
+                margin-right: 2em;
+            }
+            #hostCoinS {
+                margin-left: 2em;
+            }
+            p {
+                margin-bottom: 5px;
+                font-size: 1.5em;
+                color: #FFF;
+            }
+        }
+    }
+}
+#gameAction {
+    position: absolute;
+    top: 2em;
+    right: 0;
+    left: 0;
+    margin: auto;
+    width: 60vh;
+    height: 60vh;
+    #GlassBG, #Glass01, #Glass02 {
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    .GlassAnim01 {
+        animation-name: GlassAnim01;
+        animation-duration: .5s;
+        animation-delay: .5S;
+        animation-iteration-count: 8;
+        animation-timing-function: linear;
+        animation-fill-mode: forwards;
+    }
+    @keyframes GlassAnim01 {
+        0% {
+            transform: translate(0, 0px);
+        }
+        50% {
+            transform: translate(0, -3px);
+        }
+        100% {
+            transform: translate(0, 0px);
+        }
+    }
+    .GlassAnim02 {
+        animation-name: GlassAnim02;
+        animation-duration: 1s;
+        animation-delay: .5S;
+        animation-timing-function: linear;
+        animation-fill-mode: forwards;
+        opacity: 0;
+    }
+    @keyframes GlassAnim02 {
+        0% {
+            z-index: 10;
+            opacity: 0;
+        }
+        50% {
+            opacity: .5;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+    
+}
+
+.btn {
+    position: relative;
+    width: 100%;
+    max-width: 350px; /* ボタンの幅 */
+    color: #FFF; /* 文字色 */
+    font-weight: 600;
+    font-size: 1.5em;
+    background:#ff0084; /* 背景色 */
+    transition: all 0.5s;
+    text-decoration: none;
+    text-align: center;
+    display: inline-block;
+    padding: 1em 2em;
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        transition: all 0.4s;
+        border: 2px solid #B058D6; /* 枠の色 */
+        transform: scale(1.5,1.5);
+        opacity: 0;
+        z-index: 1;
+    }
+    &:hover {
+        color: #ff0084;
+        background: #ffc400; /* 背景色 */
+    }
+    &:hover::after {
+        opacity: 1;
+        transform: scale(1,1);
+    }
+}
+.btn_coinIn {
+    /*波紋の基点とするためrelativeを指定*/
+    position: relative;
+    /*はみ出す波紋を隠す*/
+    overflow: hidden;
+    /*ボタンの形状*/
+    text-decoration: none;
+    display:inline-block;
+    background: #0084ff;
+    font-weight: bold;
+    font-size: 1.5em;
+    color: #FFF;
+    padding: 10px 20px;
+    margin: 0 0 1em;
+    border-radius: 25px;
+    outline: none;
+    width: 10em;
+    &::after {
+        content: "";
+        /*絶対配置で波紋位置を決める*/
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        /*波紋の形状*/
+        background: radial-gradient(circle, #fff 10%, transparent 0%) no-repeat 50%;
+        transform: scale(10, 10);
+        /*はじめは透過0に*/
+        opacity: 0;
+        /*アニメーションの設定*/
+        transition: transform 0.3s, opacity 1s;
+    }
+    &:active::after {
+        transform: scale(0, 0);
+        transition: 0s;
+        opacity: 0.3;
+    }
+    &:hover {
+        transform:scale(1.1);
+        transition:0.3s;
+    }
+}
+
+.btn_coinInNon {
+    border: none;
+    background: #4a4a4a;
+    font-weight: 100;
+    &::after {
+        content: "";
+        background: none;
+    }
+    &:hover {
+        transform:scale(1);
+
+    }
+}
+
+.coinCount {
+    border: none;
+    background: #ffc400;
+    margin: 0 -1.5em;
+    width: 3em;
+    height: 3em;
+    border-radius: 40px;
+    color: #000;
+    z-index: 5;
+    &::after {
+        content: "";
+        background: none;
+    }
+}
+
+.inputBlock {
+    opacity: .85;
+    margin: 0 auto;
+    padding: 2em 0;
+    background-color: #1B1F28;
+    width: 100%;
+    input {
+        margin-bottom: 15px;
+        text-align: center;
+        font-size: 2em;
+    }
+}
+
+#richBG {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 100vh;
+    z-index: -9999;
+    #richBGimg {
+        opacity: .3;
+    }
+    .richBGimgOpa {
+        animation-name: richBGimgOpa;
+        animation-duration: 2s;
+        animation-timing-function: linear;
+        animation-fill-mode: forwards;
+    }
+    @keyframes richBGimgOpa {
+        0% {
+            opacity: .3;
+        }
+        50% {
+            opacity: .5;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+    .richBGimgOpaRev {
+        animation-name: richBGimgOpaRev;
+        animation-duration: 2s;
+        animation-timing-function: linear;
+        animation-fill-mode: forwards;
+    }
+    @keyframes richBGimgOpaRev {
+        0% {
+            opacity: 1;
+        }
+        50% {
+            opacity: .5;
+        }
+        100% {
+            opacity: .3;
+        }
+    }
+}
+
+.gameOverBG {
+    animation-name: gameOverBG;
+    animation-duration: 1s;
+    animation-delay: 3S;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+    opacity: 1;
+}
+@keyframes gameOverBG {
+    0% {
+        z-index: 10;
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        display: none;
+    }
+}
+
+#ending {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 100vh;
+}
+.endingBG {
+    animation-name: endingBG;
+    animation-duration: 4s;
+    animation-delay: 2.5S;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+    opacity: 0;
+}
+@keyframes endingBG {
+    0% {
+        z-index: 10;
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.ending01, .ending02, .ending03 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 100vh;
+}
+
+.ending01 {
+    z-index: 3;
+//     animation-name: ending01;
+//     animation-duration: 10s;
+//     // animation-delay: 5S;
+//     animation-timing-function: ease-in-out;
+//     animation-fill-mode: forwards;
+}
+// @keyframes ending01 {
+//     0% {
+//         transform: translate(0, 0px);
+//     }
+//     100% {
+//         transform: translate(0, 5%);
+//     }
+// }
+
+.ending02 {
+    animation-name: ending02;
+    animation-duration: 5s;
+    animation-delay: 5S;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+    margin-bottom: 20%;
+    opacity: 0;
+    z-index: 2;
+}
+@keyframes ending02 {
+    0% {
+        scale: .9 .9;
+        transform: translate(0, 0px);
+        opacity: 0;
+    }
+    100% {
+        scale: 1 1;
+        transform: translate(0, -10%);
+        opacity: 1;
+    }
+}
+
+.ending03 {
+    animation-name: ending03;
+    animation-duration: 5s;
+    animation-delay: 4S;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+    opacity: 0;
+    z-index: 1;
+}
+@keyframes ending03 {
+    0% {
+        scale: .7 .7;
+        opacity: 0;
+    }
+    100% {
+        scale: 1 1;
+        opacity: 1;
+    }
+}
+
+.endingBGopopa {
+    animation-name: endingBGopopa;
+    animation-duration: 2s;
+    animation-delay: 12S;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+    opacity: 1;
+}
+@keyframes endingBGopopa {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+.endingGameOver {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 100vh;
+    animation-name: endingGameOver;
+    animation-duration: 3s;
+    animation-delay: 15S;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+    opacity: 0;
+}
+@keyframes endingGameOver {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
     }
 }

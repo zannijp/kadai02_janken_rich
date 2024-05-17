@@ -5,32 +5,95 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
     <link rel="stylesheet" href="css/style.min.css">
-    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kaisei+Tokumin&family=Yuji+Syuku&display=swap" rel="stylesheet">
+    <title>ワインとコイン -Wine & Coin-</title>
 </head>
 <body>
     
     <div id="coinGame">
-        <div id="name">
-            <input type="text" value="ジョナサン" id="p_name" placeholder="ジョナサン">
-            <button value="next" onclick="playButton();">NEXT</button>
+        <div id="wrap">
+            <div id="start" onclick="startButton();">
+                <div id="startContents">
+                    <img id="WnC_Logo" src="svg/WnC_Logo.svg" alt="ワインとコイン">
+                    <p>画面をクリックでSTART</p>>
+                </div>
+            </div>
+            <div id="name" class="d_none">
+                <div id="hostTalk01">
+                    <img id="hostNameTalk01" src="svg/fukidashi_P01.svg" alt="…名前は？">
+                </div>
+                <div id="nameInput">
+                    <div class="inputBlock">
+                        <input type="text" value="ジョナサン" id="p_name" placeholder="ジョナサン"><br>
+                        <button id="startButton" class="btn" value="next" onclick="playButton();">NEXT</button>
+                    </div>
+                </div>
+            </div>
+            <div id="attack" class="d_none">
+                <div id="hostTalk02">
+                    <img id="hostAttackTalk02" src="svg/fukidashi_P02.svg" alt="…選べ。">
+                </div>
+                <div id="attackInput">
+                    <div class="inputBlock">
+                        <div class="attackChoice">
+                            <input type="radio" id="attackF" name="attacks" value="first" checked><label for="attackF">先攻</label>
+                            <input type="radio" id="attackS" name="attacks" value="second"><label for="attackS">後攻</label>
+                        </div>
+                        <button class="btn" value="BATTLE" onclick="attackButton();">BATTLE</button>
+                    </div>
+                </div>
+            </div>
+            <div id="fukidashi" class="d_none">
+                <img id="fukidashiImg_H" src="svg/fukidashi_H.svg" alt="">
+            </div>
+            <div id="game" class="d_none">
+                <div class="gameInput">
+                    <div class="inputBlock">
+                        <div id="gameFirst" class="d_none">
+                            <p>名前をクリックしてコインを投入</p>
+                            <button id="p_coinCountF" class="btn_coinIn coinCount">0</button>
+                            <button id="playerCoinF" class="btn_coinIn"></button>
+                            <button id="hostCoinF" class="btn_coinIn btn_coinInNon">ホスト</button>
+                            <button id="h_coinCountF" class="btn_coinIn coinCount">0</button>
+                            <p>↓↓コインを投入終えたら↓↓</p>
+                        </div>
+                        <div id="gameSecond" class="d_none">
+                            <p>名前をクリックしてコインを投入</p>
+                            <button id="p_coinCountS" class="btn_coinIn coinCount">0</button>
+                            <button id="playerCoinS" class="btn_coinIn btn_coinInNon"></button>
+                            <button id="hostCoinS" class="btn_coinIn">ホスト</button>
+                            <button id="h_coinCountS" class="btn_coinIn coinCount">0</button>
+                            <p>↓↓コインを投入終えたら↓↓</p>
+                        </div>
+                        <div id="ui">
+                            <!-- <button id="change" class="btn">チェンジ</button> -->
+                            <button id="change" class="btn">CHANGE</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="gameAction" class="d_none">
+                <div>
+                    <img id="GlassBG" src="svg/Glass.svg" alt="">
+                    <img id="Glass01" src="svg/Glass01.svg" alt="">
+                    <img id="Glass02" src="svg/Glass02.svg" class="d_none" alt="">
+                </div>
+            </div>
         </div>
-        <div id="attack" class="d_none">
-            <label><input type="radio" name="attacks" value="first" checked>先攻</label>
-            <label><input type="radio" name="attacks" value="second">後攻</label>
-            <button value="START" onclick="attackButton();">START</button>
+        <div id="richBG">
+            <img id="richBGimg" src="svg/richBG.svg" alt="">
         </div>
-        <div id="gameFirst" class="d_none">
-            <button id="playerCoin">プレイヤー</button>
-            <button id="hostCoin">ホスト</button>
+        <div id="ending" class="d_none">
+            <div id="endingParts" class="d_none">
+                <img id="ending01" src="svg/ending01.svg" alt="">
+                <img id="ending02" src="svg/ending02.svg" alt="">
+                <img id="ending03" src="svg/ending03.svg" alt="">
+            </div>
         </div>
-        <div id="gameSecond" class="d_none">
-            <button id="hostCoin">ホスト</button>
-            <button id="playerCoin">プレイヤー</button>
-        </div>
-        <div id="ui" class="d_none">
-            <button id="change">チェンジ</button>
-            <p>プレイヤーの名前：<span id="nameDisplay"></span></p>
-            <p>先攻後攻：<span id="attackDisplay"></span></p>
+        <div id="endingGameOver" class="d_none">
+            <img id="GameOver" src="svg/gameover.svg" alt="">ssss
         </div>
     </div>
 
